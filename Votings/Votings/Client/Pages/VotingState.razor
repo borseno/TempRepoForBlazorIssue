@@ -1,0 +1,85 @@
+﻿@page "/votingState/{id}"
+@inject IVotingsService service
+@using Models = Votings.Shared.PageModels
+
+<h3>VotingInfo</h3>
+
+<h1>@model.Description</h1>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Voting state</h5>
+
+        <div class="form-group">
+            <label for="Description">Name</label>
+            <p>@model.Name</p>
+        </div>
+        <div class="form-group">
+            <label for="Description">Description</label>
+            <p>@model.Description</p>
+        </div>
+        <div class="form-group">
+            <label for="Description">Start date</label>
+            <p>@model.StartDate</p>
+        </div>
+        <div class="form-group">
+            <label for="Description">Due date</label>
+            <p>@model.DueDate</p>
+        </div>
+        <div class="form-group">
+            <label for="Description">Results</label>
+            @foreach (var option in optionsVotes)
+            {
+                <p>Option: @option.Key Votes: @option.Value</p>
+            }
+            <br />
+            <label for="Description">Options that were never chosen</label>
+            @foreach (var neverChosenOption in neverVoted)
+            {
+                <p>Option: @neverChosenOption</p>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    private Models.VotingState model = new Models.VotingState();
+
+    private IEnumerable<KeyValuePair<string, int>> optionsVotes =
+        Enumerable.Empty<KeyValuePair<string, int>>();
+
+    private IEnumerable<string> neverVoted = Enumerable.Empty<string>();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        var parsed = Int32.Parse(Id);
+
+        model = await service.GetVotingState(parsed);
+
+        Console.WriteLine(model.Choices);
+
+        foreach (var i in model.Choices)
+        {
+            Console.WriteLine(i.OptionInfo?.Description);
+        }
+
+        optionsVotes = model.Choices
+            .Where(i => i.OptionInfo.NeverChosen == false)
+            .Select(i => i.OptionInfo.Description).Distinct()
+            .Select(i => new
+            {
+                Option = i,
+                Count = model.Choices.Where(j => j.OptionInfo.Description == i).Count()
+            }).ToDictionary(i => i.Option, i => i.Count);
+
+        neverVoted = model
+            .Choices
+            .Where(i => i.OptionInfo.NeverChosen).Select(i => i.OptionInfo.Description)
+            .ToArray();
+    }
+}

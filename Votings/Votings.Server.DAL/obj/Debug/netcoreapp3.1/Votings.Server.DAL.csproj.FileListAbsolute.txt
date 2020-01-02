@@ -1,0 +1,8 @@
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.DAL\bin\Debug\netcoreapp3.1\Votings.Server.DAL.deps.json
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.DAL\bin\Debug\netcoreapp3.1\Votings.Server.DAL.dll
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.DAL\bin\Debug\netcoreapp3.1\Votings.Server.DAL.pdb
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.DAL\obj\Debug\netcoreapp3.1\Votings.Server.DAL.csprojAssemblyReference.cache
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.DAL\obj\Debug\netcoreapp3.1\Votings.Server.DAL.AssemblyInfoInputs.cache
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.DAL\obj\Debug\netcoreapp3.1\Votings.Server.DAL.AssemblyInfo.cs
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.DAL\obj\Debug\netcoreapp3.1\Votings.Server.DAL.dll
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.DAL\obj\Debug\netcoreapp3.1\Votings.Server.DAL.pdb

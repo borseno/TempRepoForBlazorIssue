@@ -1,0 +1,225 @@
+﻿@inject IVotingsService service
+@inject NavigationManager navManager
+
+@using Votings.Shared.PageResults
+@using System.Globalization;
+
+@if (errors != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @foreach (var error in errors)
+        {
+            <p>@error</p>
+        }
+    </div>
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Enter voting details...</h5>
+        <EditForm Model="@model" OnValidSubmit="@HandleFormSubmittal">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <InputText id="Name" class="form-control" @bind-Value="model.Name" />
+                <ValidationMessage For="@(() => model.Name)" />
+            </div>
+            <div class="form-group">
+                <label for="Description">Description</label>
+                <InputTextArea id="Description" class="form-control" @bind-Value="model.Description" />
+                <ValidationMessage For="@(() => model.Description)" />
+            </div>
+            <div class="form-group">
+                <label for="startDate">Start date</label>
+                <InputDate id="startDate" class="form-control" @bind-Value="startDate" />
+                <ValidationMessage For="@(() => model.StartDate)" />
+            </div>
+            <div class="form-group">
+                <label for="startTime">Start time</label>
+                <input type="time" id="startTime" class="form-control" @bind="startTime" />
+                <ValidationMessage For="@(() => startTime)" />
+            </div>
+            <div class="form-group">
+                <label for="dueDate">Due date</label>
+                <InputDate id="duedate" class="form-control" @bind-Value="dueDate" />
+                <ValidationMessage For="@(() => dueDate)" />
+            </div>
+            <div class="form-group">
+                <label for="dueTime">Due time</label>
+                <input type="time" id="duetime" class="form-control" @bind="dueTime" />
+                <ValidationMessage For="@(() => dueTime)" />
+            </div>
+            <div class="form-group">
+                <label for="IsAnonymous">Anonymous</label>
+                <InputCheckbox id="IsAnonymous" class="form-control" @bind-Value="model.IsAnonymous" />
+                <ValidationMessage For="@(() => model.IsAnonymous)" />
+            </div>
+            <div class="form-group">
+                <label for="IsLimited">Limited</label>
+                <InputCheckbox id="IsLimited" class="form-control" @bind-Value="model.IsLimited" />
+                <ValidationMessage For="@(() => model.IsLimited)" />
+            </div>
+            <div class="form-group">
+                <label for="IsClosed">Closed</label>
+                <InputCheckbox id="IsClosed" class="form-control" @bind-Value="model.IsClosed" />
+                <ValidationMessage For="@(() => model.IsClosed)" />
+            </div>
+            <div class="form-group">
+                <label for="MinChoicesAmount">Minimal amount of choices</label>
+                <InputNumber id="MinChoicesAmount" class="form-control" @bind-Value="model.MinChoicesAmount" />
+                <ValidationMessage For="@(() => model.MinChoicesAmount)" />
+            </div>
+            <div class="form-group">
+                <label for="MaxChoicesAmount">Maximum amount of choices</label>
+                <InputNumber id="MaxChoicesAmount" class="form-control" @bind-Value="model.MaxChoicesAmount" />
+                <ValidationMessage For="@(() => model.MaxChoicesAmount)" />
+            </div>
+
+            <div class="form-group">
+                <label>Add option...</label>
+                <InputText id="currentOption" class="form-control" @bind-Value="currentOption"></InputText>
+                <button type="button" class="btn btn-secondary" @onclick="() => AddElem(ref currentOption, options)">Add option</button>
+            </div>
+
+            <div class="form-group">
+                <label>@(model.IsLimited ? "Add user to voting..." : "Restrict user from voting...")</label>
+                <InputText id="currentUsername" class="form-control" @bind-Value="currentUsername"></InputText>
+                <button type="button" class="btn btn-secondary" @onclick="() => AddElem(ref currentUsername, usernames)">Click</button>
+            </div>
+
+            <ul class="list-group">
+                <li class="nav-header disabled">Options</li>
+                @foreach (var i in options)
+                {
+                    <li class="list-group-item">
+                        @i
+                        <div>
+                            <button type="button" class="btn btn-danger" @onclick="() => RemoveItem(i, options)">Delete</button>
+                        </div>
+                    </li>
+                }
+            </ul>
+
+            <ul class="list-group">
+                <li class="nav-header disabled">@(model.IsLimited ? "Allowed users" : "Banned users")</li>
+                @foreach (var i in usernames)
+                {
+                    <li class="list-group-item">
+                        @i
+                        <div>
+                            <button type="button" class="btn btn-danger" @onclick="() => RemoveItem(i, usernames)">Delete</button>
+                        </div>
+                    </li>
+                }
+            </ul>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </EditForm>
+
+        @if (sending)
+        {
+            <div>
+                <p>Sending info...</p>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    private IEnumerable<string> errors;
+    private bool sending;
+
+    private string currentOption;
+    private List<string> options = new List<string>();
+
+    private string currentUsername;
+    private List<string> usernames = new List<string>();
+
+    private VotingInitialInfoModel model = new VotingInitialInfoModel
+    {
+        Options = "".ObjectToArray(),
+        MinChoicesAmount = 1,
+        MaxChoicesAmount = 1
+    };
+
+    private DateTime dueDate;
+    private DateTime dueTime;
+    private DateTime startDate;
+    private DateTime startTime;
+
+    private bool isEdit;
+
+    public PullVotingInfoToServer()
+    {
+        startTime = startDate = DateTimeExtensions.GetBlazorNow().AddHours(1);
+        dueTime = dueDate = DateTimeExtensions.GetBlazorNow().AddHours(2);
+    }
+
+    private static void RemoveItem(string item, IList<string> items)
+        => items.RemoveAt(items.IndexOf(item));
+
+    private static void AddElem(ref string elem, ICollection<string> elems)
+    {
+        if (String.IsNullOrWhiteSpace(elem))
+        {
+            return;
+        }
+
+        elems.Add(elem);
+        elem = null;
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        if (isEdit = Int32.TryParse(Id, out var id))
+        {
+            var model = await service.GetVotingEditModel(id);
+            model.Id = id;
+
+            this.model = model;
+            this.options = model.Options.ToList();
+        }
+    }
+
+    private async Task HandleFormSubmittal()
+    {
+        var start = startDate.Date + startTime.TimeOfDay;
+        var end = dueDate.Date + dueTime.TimeOfDay;
+
+        model.StartDate = start;
+        model.DueDate = end;
+        model.Options = options;
+
+        Func<Task<VotingRegisteringResult>> func;
+
+        if (isEdit)
+            func = () => service.EditVoting((VotingEditModel)model);
+        else
+            func = () => service.RegisterVote(model);
+
+        var request = func();
+
+        sending = true;
+
+        var result = await request;
+
+        if (result.Successful)
+        {
+            Console.WriteLine(result.VotingId);
+            navManager.NavigateTo($"votingState/{result.VotingId}", false);
+        }
+
+        sending = false;
+
+        errors = result.Errors;
+    }
+}

@@ -1,0 +1,70 @@
+﻿@page "/login"
+@inject ILoginService LoginService
+@inject NavigationManager UriHelper
+
+<h1>Login</h1>
+
+@if (errors != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @foreach (var error in errors)
+        {
+            <p>@error</p>
+        }
+    </div>
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Please enter your details</h5>
+        <EditForm Model="@loginModel" OnValidSubmit="@HandleLogin">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <InputText id="email" class="form-control" @bind-Value="loginModel.Email" />
+                <ValidationMessage For="@(() => loginModel.Email)" />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <InputText id="password" type="password" class="form-control" @bind-Value="loginModel.Password" />
+                <ValidationMessage For="@(() => loginModel.Password)" />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </EditForm>
+
+        @if (logginIn)
+        {
+            <div>
+                <p>Logging in...</p>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+
+    private LoginModel loginModel = new LoginModel();
+    private bool logginIn;
+    private IEnumerable<string> errors;
+
+    private async Task HandleLogin()
+    {
+        logginIn = true;
+
+        var result = await LoginService.Login(loginModel);
+
+        if (result.Successful)
+        {
+            UriHelper.NavigateTo("/", forceLoad: true);
+        }
+        else
+        {
+            errors = result.Errors;
+        }
+
+        logginIn = false;
+    }
+
+}

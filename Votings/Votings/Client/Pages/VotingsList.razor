@@ -1,0 +1,80 @@
+﻿@page "/votingslist/{what}"
+
+@inject IVotingsService service
+@inject NavigationManager manager
+@using Votings.Shared.DTO;
+
+<h3>VotingsList</h3>
+
+@if (votingsReferences == null)
+{
+    <p><em>Loading votings...</em></p>
+}
+else
+{
+    <ul class="list-group">
+        <li class="nav-header disabled">Votings</li>
+        @foreach (var i in votingsReferences)
+        {
+            <li class="list-group-item">
+                <p class="text-body">Voting Name: @i.Name</p>
+                <div>
+                    <button class="btn btn-info" @onclick="() => GoToState(i.Id)">State</button>
+                </div>
+                <AuthorizeView>
+                    <Authorized>
+                        @if (context.User.Claims.First(i => i.Type == CustomClaimTypes.UserId).Value == i.AuthorId)
+                        {
+                            if (i.StartDate > DateTimeExtensions.GetBlazorNow())
+                            {
+                                <br />
+                                <div>
+                                    <button class="btn btn-warning" @onclick="() => GoToEdit(i.Id)">Edit</button>
+                                </div>
+                            }
+                        }
+                    </Authorized>
+                </AuthorizeView>
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    [Parameter]
+    public string What { get; set; }
+
+    IEnumerable<VotingReference> votingsReferences;
+
+    private void GoToEdit(int id)
+    {
+        manager.NavigateTo($"editvotinginfo/{id}");
+    }
+
+    private void GoToState(int id)
+    {
+        manager.NavigateTo($"votingState/{id}");
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        bool currentUserOnly;
+
+        if (What.Equals("Mine", StringComparison.OrdinalIgnoreCase))
+        {
+            currentUserOnly = true;
+        }
+        else if (What.Equals("All", StringComparison.OrdinalIgnoreCase))
+        {
+            currentUserOnly = false;
+        }
+        else
+        {
+            throw new NotSupportedException($"Only 'all' or 'mine' testings info options are available. You option was: {{{What}}}");
+        }
+
+        votingsReferences = await service.GetVotingsReferences(currentUserOnly);
+
+        await base.OnParametersSetAsync();
+    }
+}

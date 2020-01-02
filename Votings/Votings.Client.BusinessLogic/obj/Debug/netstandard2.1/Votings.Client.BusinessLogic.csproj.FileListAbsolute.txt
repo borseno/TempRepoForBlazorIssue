@@ -1,0 +1,11 @@
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Client.BusinessLogic\bin\Debug\netstandard2.1\Votings.Client.BusinessLogic.deps.json
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Client.BusinessLogic\bin\Debug\netstandard2.1\Votings.Client.BusinessLogic.dll
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Client.BusinessLogic\bin\Debug\netstandard2.1\Votings.Client.BusinessLogic.pdb
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Client.BusinessLogic\bin\Debug\netstandard2.1\Votings.Shared.dll
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Client.BusinessLogic\bin\Debug\netstandard2.1\Votings.Shared.pdb
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Client.BusinessLogic\obj\Debug\netstandard2.1\Votings.Client.BusinessLogic.csprojAssemblyReference.cache
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Client.BusinessLogic\obj\Debug\netstandard2.1\Votings.Client.BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Client.BusinessLogic\obj\Debug\netstandard2.1\Votings.Client.BusinessLogic.AssemblyInfo.cs
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Client.BusinessLogic\obj\Debug\netstandard2.1\Votings.Client.BusinessLogic.csproj.CopyComplete
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Client.BusinessLogic\obj\Debug\netstandard2.1\Votings.Client.BusinessLogic.dll
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Client.BusinessLogic\obj\Debug\netstandard2.1\Votings.Client.BusinessLogic.pdb

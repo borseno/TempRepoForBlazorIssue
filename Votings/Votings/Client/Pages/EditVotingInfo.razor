@@ -1,0 +1,10 @@
+﻿@page "/editvotinginfo/{Id}"
+
+<h3>EditVotingInfo</h3>
+
+<PullVotingInfoToServer Id=@Id></PullVotingInfoToServer>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+}

@@ -1,0 +1,13 @@
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.BusinessLayer\bin\Debug\netcoreapp3.1\Votings.Server.BusinessLayer.deps.json
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.BusinessLayer\bin\Debug\netcoreapp3.1\Votings.Server.BusinessLayer.dll
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.BusinessLayer\bin\Debug\netcoreapp3.1\Votings.Server.BusinessLayer.pdb
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.BusinessLayer\bin\Debug\netcoreapp3.1\Votings.Server.DAL.dll
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.BusinessLayer\bin\Debug\netcoreapp3.1\Votings.Shared.dll
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.BusinessLayer\bin\Debug\netcoreapp3.1\Votings.Server.DAL.pdb
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.BusinessLayer\bin\Debug\netcoreapp3.1\Votings.Shared.pdb
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.BusinessLayer\obj\Debug\netcoreapp3.1\Votings.Server.BusinessLayer.csprojAssemblyReference.cache
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.BusinessLayer\obj\Debug\netcoreapp3.1\Votings.Server.BusinessLayer.AssemblyInfoInputs.cache
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.BusinessLayer\obj\Debug\netcoreapp3.1\Votings.Server.BusinessLayer.AssemblyInfo.cs
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.BusinessLayer\obj\Debug\netcoreapp3.1\Votings.Server.BusinessLayer.csproj.CopyComplete
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.BusinessLayer\obj\Debug\netcoreapp3.1\Votings.Server.BusinessLayer.dll
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings.Server.BusinessLayer\obj\Debug\netcoreapp3.1\Votings.Server.BusinessLayer.pdb

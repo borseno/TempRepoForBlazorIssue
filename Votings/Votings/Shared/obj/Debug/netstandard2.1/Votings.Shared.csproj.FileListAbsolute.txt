@@ -1,0 +1,8 @@
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings\Shared\bin\Debug\netstandard2.1\Votings.Shared.deps.json
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings\Shared\bin\Debug\netstandard2.1\Votings.Shared.dll
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings\Shared\bin\Debug\netstandard2.1\Votings.Shared.pdb
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings\Shared\obj\Debug\netstandard2.1\Votings.Shared.csprojAssemblyReference.cache
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings\Shared\obj\Debug\netstandard2.1\Votings.Shared.AssemblyInfoInputs.cache
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings\Shared\obj\Debug\netstandard2.1\Votings.Shared.AssemblyInfo.cs
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings\Shared\obj\Debug\netstandard2.1\Votings.Shared.dll
+C:\Users\mark.virchenko\Desktop\Git\Votings\Votings\Shared\obj\Debug\netstandard2.1\Votings.Shared.pdb
